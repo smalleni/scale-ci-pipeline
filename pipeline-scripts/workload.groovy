@@ -75,7 +75,7 @@ stage (workload) {
 
 	// OpenShift install specific logic 
 	// Install cluster using the payload captured at the build trigger url when scale_ci_build_trigger is set
-	if ( workload.toString().trim().equals("ATS-SCALE-CI-OCP-AWS-DEPLOY") || workload.toString().trim().equals("ATS-SCALE-CI-OCP-GCP-DEPLOY") || workload.toString().trim().equals("ATS-SCALE-CI-OCP-AZURE-DEPLOY") || workload.toString().trim().equals("ATS-SCALE-CI-OCP-OSP-DEPLOY") ) {
+	if ( workload.toString().trim().equals("ATS-SCALE-CI-OCP-AWS-DEPLOY") || workload.toString().trim().equals("ATS-SCALE-CI-OCP-GCP-DEPLOY") || workload.toString().trim().equals("ATS-SCALE-CI-OCP-AZURE-DEPLOY") || workload.toString().trim().equals("ATS-SCALE-CI-OCP-OSP-DEPLOY") || workload.toString().trim().equals("ATS-SCALE-CI-OCP-BM-DEPLOY") ) {
 		def scale_ci_build_trigger = properties['SCALE_CI_BUILD_TRIGGER']
 		def scale_ci_build_trigger_url = properties['SCALE_CI_BUILD_TRIGGER_URL']
 		if ( scale_ci_build_trigger.toBoolean() ) {

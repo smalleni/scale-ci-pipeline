@@ -15,6 +15,7 @@ def openshiftv4_install_on_aws = OPENSHIFTv4_INSTALL_ON_AWS.toString().toUpperCa
 def openshiftv4_install_on_azure = OPENSHIFTv4_INSTALL_ON_AZURE.toString().toUpperCase()
 def openshiftv4_install_on_gcp = OPENSHIFTv4_INSTALL_ON_GCP.toString().toUpperCase()
 def openshiftv4_install_on_osp = OPENSHIFTv4_INSTALL_ON_OSP.toString().toUpperCase()
+def openshiftv4_install_on_bm = OPENSHIFTv4_INSTALL_ON_BM.toString().toUpperCase()
 def ocpv4_scale = OPENSHIFTv4_SCALE.toString().toUpperCase()
 def cluster_density = CLUSTER_DENSITY.toString().toUpperCase()
 def kubelet_density = KUBELET_DENSITY.toString().toUpperCase()
@@ -85,6 +86,11 @@ node (node_label) {
 			env.WORKLOAD="SCALE-CI-MS-OSDE2E"
 			load "pipeline-scripts/workload.groovy"
 		}
+                if (openshiftv4_install_on_bm == "TRUE") {
+                        env.WORKLOAD_PROPERTIES_FILE=OPENSHIFTv4_ON_BM_PROPERTY_FILE
+                        env.WORKLOAD="ATS-SCALE-CI-OCP-BM-DEPLOY"
+                        load "pipeline-scripts/workload.groovy"
+                }
 		if (rosa == "TRUE") {
 			env.WORKLOAD_PROPERTIES_FILE=SCALE_CI_MS_ROSA_PROPERTIES_FILE
 			env.WORKLOAD="SCALE-CI-MS-ROSA"
